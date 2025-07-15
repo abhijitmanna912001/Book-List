@@ -1,5 +1,11 @@
+import BooksList from "./components/BookList";
+
 function App() {
-  return <h1>Hello from React Frontend 🚀</h1>;
+  return (
+    <h1>
+      <BooksList />
+    </h1>
+  );
 }
 
 export default App;
