@@ -17,11 +17,12 @@ connectDB();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  introspection: true,
 });
 
 await server.start();
 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use("/graphql", expressMiddleware(server));
 
