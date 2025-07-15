@@ -22,8 +22,8 @@ const server = new ApolloServer({
 await server.start();
 
 app.use(cors());
-
-app.use("/graphql", express.json(), expressMiddleware(server));
+app.use(express.json());
+app.use("/graphql", expressMiddleware(server));
 
 app.get("/", (req, res) => {
   res.send("Hello from Book Store backend");
