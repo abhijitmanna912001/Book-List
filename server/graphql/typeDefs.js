@@ -23,6 +23,12 @@ const typeDefs = `
     type Mutation {
         addAuthor(name: String!, age: Int): Author
         addBook(name: String!, genre: String, authorId: ID!): Book
+
+        updateAuthor(id: ID!, name: String, age: Int): Author
+        updateBook(id: ID!, name: String, genre: String, authorId: ID): Book
+
+        deleteAuthor(id: ID!): Author
+        deleteBook(id: ID!): Book
     }
 `;
 

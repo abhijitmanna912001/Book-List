@@ -18,6 +18,24 @@ const resolvers = {
       const book = new Book({ name, genre, authorId });
       return await book.save();
     },
+
+    updateAuthor: async (_, { id, name, age }) => {
+      return await Author.findByIdAndUpdate(id, { name, age }, { new: true });
+    },
+    updateBook: async (_, { id, name, genre, authorId }) => {
+      return await Book.findByIdAndUpdate(
+        id,
+        { name, genre, authorId },
+        { new: true }
+      );
+    },
+
+    deleteAuthor: async (_, { id }) => {
+      return await Author.findByIdAndDelete(id);
+    },
+    deleteBook: async (_, { id }) => {
+      return await Book.findByIdAndDelete(id);
+    },
   },
 
   Book: {
