@@ -9,6 +9,17 @@ const resolvers = {
     author: async (_, { id }) => await Author.findById(id),
   },
 
+  Mutation: {
+    addAuthor: async (_, { name, age }) => {
+      const author = new Author({ name, age });
+      return await author.save();
+    },
+    addBook: async (_, { name, genre, authorId }) => {
+      const book = new Book({ name, genre, authorId });
+      return await book.save();
+    },
+  },
+
   Book: {
     author: async (parent) => await Author.findById(parent.authorId),
   },

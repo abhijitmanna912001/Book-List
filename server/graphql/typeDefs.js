@@ -19,6 +19,11 @@ const typeDefs = `
         authors: [Author]
         author(id: ID!): Author
     }
+
+    type Mutation {
+        addAuthor(name: String!, age: Int): Author
+        addBook(name: String!, genre: String, authorId: ID!): Book
+    }
 `;
 
 export default typeDefs;
