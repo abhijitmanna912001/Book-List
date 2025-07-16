@@ -46,3 +46,13 @@ export interface AddBookVars {
   genre: string;
   authorId: string;
 }
+
+export interface DeleteBookData {
+  deleteBook: {
+    id: string;
+  };
+}
+
+export interface DeleteBookVars {
+  id: string;
+}
