@@ -66,3 +66,32 @@ export interface DeleteAuthorData {
 export interface DeleteAuthorVars {
   id: string;
 }
+
+export interface UpdateBookData {
+  updateBook: {
+    id: string;
+    name: string;
+    genre: string;
+  };
+}
+
+export interface UpdateBookVars {
+  id: string;
+  name?: string;
+  genre?: string;
+  authorId?: string;
+}
+
+export interface UpdateAuthorData {
+  updateAuthor: {
+    id: string;
+    name: string;
+    age: number;
+  };
+}
+
+export interface UpdateAuthorVars {
+  id: string;
+  name?: string;
+  age?: number;
+}
