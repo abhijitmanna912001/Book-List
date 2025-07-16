@@ -44,38 +44,78 @@ const AuthorsList = () => {
   };
 
   return (
-    <div>
-      <h2>Authors</h2>
-      <ul>
+    <div className="card mb-4 shadow-sm">
+      <div className="card-header bg-primary text-white">
+        <h5 className="mb-0">✍️ Authors</h5>
+      </div>
+      <ul className="list-group list-group-flush">
         {data?.authors.map((author) => (
-          <li key={author.id}>
+          <li
+            key={author.id}
+            className="list-group-item d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center"
+          >
             {editingAuthorId === author.id ? (
-              <span>
-                <input
-                  type="text"
-                  value={editName}
-                  onChange={(e) => setEditName(e.target.value)}
-                  placeholder="Author name"
-                />
-                <input
-                  type="number"
-                  value={editAge}
-                  onChange={(e) => setEditAge(Number(e.target.value))}
-                  placeholder="Age"
-                />
-                <button onClick={handleUpdate}>Save</button>
-                <button onClick={() => setEditingAuthorId(null)}>Cancel</button>
-              </span>
+              <div className="w-100">
+                <div className="row g-2 mb-2">
+                  <div className="col-md">
+                    <input
+                      type="text"
+                      value={editName}
+                      onChange={(e) => setEditName(e.target.value)}
+                      className="form-control form-control-sm"
+                      placeholder="Author name"
+                    />
+                  </div>
+                  <div className="col-md">
+                    <input
+                      type="number"
+                      value={editAge}
+                      onChange={(e) => setEditAge(Number(e.target.value))}
+                      className="form-control form-control-sm"
+                      placeholder="Age"
+                    />
+                  </div>
+                </div>
+                <div className="d-flex gap-2">
+                  <button
+                    onClick={handleUpdate}
+                    className="btn btn-success btn-sm"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => setEditingAuthorId(null)}
+                    className="btn btn-secondary btn-sm"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
             ) : (
-              <span>
-                {author.name} (age {author.age}) — {author.books.length} book(s)
-                <button onClick={() => startEditing(author)}>Edit</button>
-                <button
-                  onClick={() => deleteAuthor({ variables: { id: author.id } })}
-                >
-                  Delete
-                </button>
-              </span>
+              <>
+                <span className="flex-grow-1">
+                  <strong>{author.name}</strong> (age {author.age}) —{" "}
+                  <small className="text-muted">
+                    {author.books.length} book(s)
+                  </small>
+                </span>
+                <div className="mt-2 mt-md-0 d-flex gap-2">
+                  <button
+                    onClick={() => startEditing(author)}
+                    className="btn btn-primary btn-sm"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() =>
+                      deleteAuthor({ variables: { id: author.id } })
+                    }
+                    className="btn btn-danger btn-sm"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </>
             )}
           </li>
         ))}

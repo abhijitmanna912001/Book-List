@@ -24,25 +24,41 @@ const AddAuthor = () => {
   };
 
   return (
-    <div>
-      <h3>Add Author</h3>
-      <form onSubmit={handleSubmit}>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Author name"
-        />
-        <input
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-          placeholder="Age"
-          type="number"
-        />
-        <button type="submit" disabled={loading}>
-          Add Author
-        </button>
-      </form>
-      {error && <p>Error adding author</p>}
+    <div className="card mb-4 shadow-sm">
+      <div className="card-header bg-primary text-white">
+        <h5 className="mb-0">➕ Add Author</h5>
+      </div>
+      <div className="card-body">
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">Author Name</label>
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="form-control"
+              placeholder="Enter author name"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Age</label>
+            <input
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+              className="form-control"
+              type="number"
+              placeholder="Enter age"
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-success" disabled={loading}>
+            {loading ? "Adding..." : "Add Author"}
+          </button>
+          {error && (
+            <div className="alert alert-danger mt-2">Error adding author</div>
+          )}
+        </form>
+      </div>
     </div>
   );
 };
