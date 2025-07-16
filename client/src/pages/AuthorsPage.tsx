@@ -3,8 +3,8 @@ import AuthorsList from "../components/AuthorList";
 
 const AuthorsPage = () => {
   return (
-    <div>
-      <h1>Authors</h1>
+    <div className="container py-4">
+      <h2 className="mb-4 text-center">📚 Authors</h2>
       <AddAuthor />
       <AuthorsList />
     </div>
