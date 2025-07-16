@@ -1,16 +1,21 @@
-import AddAuthor from "./components/AddAuthor";
-import AddBook from "./components/AddBook";
-import AuthorsList from "./components/AuthorList";
-import BooksList from "./components/BookList";
+import { Link, Route, BrowserRouter as Router, Routes } from "react-router";
+import AuthorsPage from "./pages/AuthorsPage";
+import BooksPage from "./pages/BooksPage";
 
 function App() {
   return (
-    <h1>
-      <AddAuthor />
-      <AddBook />
-      <AuthorsList />
-      <BooksList />
-    </h1>
+    <Router>
+      <nav style={{ margin: "1rem" }}>
+        <Link to="/" style={{ marginRight: "1rem" }}>
+          Books
+        </Link>
+        <Link to="/authors">Authors</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<BooksPage />} />
+        <Route path="/authors" element={<AuthorsPage />} />
+      </Routes>
+    </Router>
   );
 }
 
