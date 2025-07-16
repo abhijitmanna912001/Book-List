@@ -56,3 +56,13 @@ export interface DeleteBookData {
 export interface DeleteBookVars {
   id: string;
 }
+
+export interface DeleteAuthorData {
+  deleteAuthor: {
+    id: string;
+  };
+}
+
+export interface DeleteAuthorVars {
+  id: string;
+}

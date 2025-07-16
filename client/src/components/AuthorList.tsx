@@ -1,9 +1,18 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
+import { DELETE_AUTHOR } from "../graphql/mutations";
 import { GET_AUTHORS } from "../graphql/queries";
-import type { GetAuthorsData } from "../graphql/types";
+import type {
+  DeleteAuthorData,
+  DeleteAuthorVars,
+  GetAuthorsData,
+} from "../graphql/types";
 
 const AuthorsList = () => {
   const { data, loading, error } = useQuery<GetAuthorsData>(GET_AUTHORS);
+  const [deleteAuthor] = useMutation<DeleteAuthorData, DeleteAuthorVars>(
+    DELETE_AUTHOR,
+    { refetchQueries: [{ query: GET_AUTHORS }] }
+  );
 
   if (loading) return <p>Loading authors...</p>;
   if (error) return <p>Error loading authors</p>;
@@ -15,6 +24,11 @@ const AuthorsList = () => {
         {data?.authors.map((author) => (
           <li key={author.id}>
             {author.name} (age {author.age}) — {author.books.length} book(s)
+            <button
+              onClick={() => deleteAuthor({ variables: { id: author.id } })}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
